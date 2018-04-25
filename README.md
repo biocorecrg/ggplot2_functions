@@ -3,11 +3,9 @@
 
 ## What is done and what is pending
 
-- [x] PCA from a matrix
-- [ ] PCA from a DESeq2 object
+- [x] PCA from a matrix or a DESeq2 object
 - [x] Density plot from a data frame or a matrix
-- [ ] Dotplot for counts / gene from a matrix
-- [ ] Dotplot for counts / gene from a DESeq2 object
+- [ ] Dotplot for counts / gene from a matrix or a DESeq2 object
 - [x] Hierarchical clustering from a matrix or a DESeq2 object
 
 
@@ -21,7 +19,7 @@ source("functions/pca.R")
 
 ### arguments
 
-**data**: compulsory; object of class matrix: each column is a sample.<br>
+**data**: compulsory; object of class matrix OR DESeqTransform OR DESeqDataSet: each column is a sample.<br>
 **title**: optional; will be used to construct the main title of the plot and the name of the file; defaults to time stamp.<br>
 **first_pc**, **second_pc**; optional: which components do you want to plot. first will go to the x axis, second will go to the y axis; defaults to 1 and 2, respectively.<br>
 **groups**: optional; vector that contains the name of the experimental groups (same order as in the columns of data).<br>

@@ -12,18 +12,20 @@
 pca_ggplot <- function(data, title, first_pc, second_pc, groups, samples){
 	
 	# check if ggplot2 is installed; if not, install it
-	list.of.packages <- c("ggplot2", "cowplots")
+	list.of.packages <- c("ggplot2", "cowplots", "DESeq2")
 	new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
 	if(length(new.packages)) install.packages(new.packages)
 	
 	# load ggplot2 and cowplots
-	require(ggplot2); require(cowplots)
+	require(ggplot2); require(cowplots); require("DESeq2")
 
 	# check if the data argument was passed: no input!
 	if (missing(data))
 		stop("Need to input a data argument (matrix)")
-	if(!is.matrix(data))
-		stop("data should be a matrix")
+
+	# test if data is a matrix or a DESeq2 object; adjust accordingly
+	if(is(data, "DESeqTransform")) data <- assay(data)
+	if(is(data, "DESeqDataSet")) data <- assay(rlog(data))
 
 	# Performs principal component analysis on data
 	pca <- prcomp(t(data))
