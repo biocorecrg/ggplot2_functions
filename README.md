@@ -98,7 +98,7 @@ source("functions/dotplot_genes_counts.R")
 
 ### arguments
 
-**data**: compulsory; object of class matrix: each column is a sample. Row names should be gene names!<br>
+**data**: compulsory; object of class matrix OR DESeqTransform OR DESeqDataSet: each column is a sample. Row names should be gene names!<br>
 **genes**: compulsory; vector of gene names (should be found in row names of data).<br>
 **title**: optional; defaults to time stamp.<br>
 **groups**: optional; vector that contains the name of the experimental groups (same order as in the columns of data).<br>
