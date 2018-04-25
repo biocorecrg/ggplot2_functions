@@ -5,8 +5,9 @@
 
 - [x] PCA from a matrix or a DESeq2 object
 - [x] Density plot from a data frame or a matrix
-- [ ] Dotplot for counts / gene from a matrix or a DESeq2 object
 - [x] Hierarchical clustering from a matrix or a DESeq2 object
+- [x] Dotplot for counts / gene from a matrix or a DESeq2 object
+- [ ] Heatmap from a matrix or a DESeq2 object
 
 
 ## Principal component analysis
@@ -88,6 +89,33 @@ dendro_ggplot(dat,
 	title="my first Dendrogram",
 	groups=c(rep("one", 15), rep("two", 20), rep("three", 25)))
 ```
+
+## Dot plots
+
+```
+source("functions/dotplot_genes_counts.R")
+```
+
+### arguments
+
+**data**: compulsory; object of class matrix: each column is a sample. Row names should be gene names!<br>
+**genes**: compulsory; vector of gene names (should be found in row names of data).<br>
+**title**: optional; defaults to time stamp.<br>
+**groups**: optional; vector that contains the name of the experimental groups (same order as in the columns of data).<br>
+**samples**: optional; vector that contains the name of the samples for labeling the points; defaults to the column names of data.<br>
+
+### create an example matrix and test the function
+
+```
+dat <- matrix(rnorm(120000), ncol=20, 
+	dimnames=list(paste0("gene", 1:6000), paste0("sample", 1:20)))
+
+dotplot_genes_ggplot(dat, 
+	genes=c("gene2030", "gene140", "gene850"),
+	title="my first dot plot",
+	groups=c(rep("one", 6), rep("two", 7), rep("three", 7)))
+```
+
 
 
 
